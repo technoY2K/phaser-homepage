@@ -1,6 +1,6 @@
 {
-  "name": "phaser-home-page",
-  "version": "0.1.0",
+  "name": "phaser-homepage",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
