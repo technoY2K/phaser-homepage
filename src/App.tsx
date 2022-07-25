@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import Phaser from "phaser";
+class Scene extends Phaser.Scene {
+  create() {
+    const screenCenterX =
+      this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    const screenCenterY =
+      this.cameras.main.worldView.y + this.cameras.main.height / 2;
+    const loadingText = this.add
+      .text(screenCenterX, screenCenterY, "Welcome")
+      .setOrigin(0.5);
+
+    this.game.events.emit("READY", true);
+  }
+}
 
 function App() {
+  const [isReady, setReady] = useState(false);
+
+  useEffect(() => {
+    const config: Phaser.Types.Core.GameConfig = {
+      type: Phaser.AUTO,
+      parent: "game",
+      width: "100%",
+      height: 600,
+      scene: [Scene],
+    };
+
+    const game = new Phaser.Game(config);
+    game.events.on("READY", setReady);
+
+    return () => {
+      setReady(false);
+      game.destroy(true);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div id="game" style={{ visibility: isReady ? "visible" : "hidden" }}></div>
   );
 }
 
