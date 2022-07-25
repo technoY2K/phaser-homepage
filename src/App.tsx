@@ -6,9 +6,7 @@ class Scene extends Phaser.Scene {
       this.cameras.main.worldView.x + this.cameras.main.width / 2;
     const screenCenterY =
       this.cameras.main.worldView.y + this.cameras.main.height / 2;
-    const loadingText = this.add
-      .text(screenCenterX, screenCenterY, "Welcome")
-      .setOrigin(0.5);
+    this.add.text(screenCenterX, screenCenterY, "Welcome").setOrigin(0.5);
 
     this.game.events.emit("READY", true);
   }
