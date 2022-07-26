@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import { Actor } from './Actor';
 
 export class Player extends Actor {
@@ -36,7 +37,7 @@ export class Player extends Actor {
     if (this.keyS?.isDown) {
       this.body.velocity.y = 110;
     }
-    
+
     if (this.keyD?.isDown) {
       this.body.velocity.x = 110;
       this.checkFlip();
