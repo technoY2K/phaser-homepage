@@ -6,11 +6,11 @@ const HomePage = lazy(() => import("../pages/home"));
 const ROOT = "/";
 
 export default function MainRouter() {
-  return (
-    <Suspense fallback={<div></div>}>
-      <Routes>
-        <Route path={ROOT} element={<HomePage />} />
-      </Routes>
-    </Suspense>
-  );
+    return (
+        <Suspense fallback={<div></div>}>
+            <Routes>
+                <Route path={ROOT} element={<HomePage />} />
+            </Routes>
+        </Suspense>
+    );
 }

@@ -10,7 +10,9 @@
   "scripts": {
     "build": "craco build",
     "start": "craco start",
-    "test": "craco test"
+    "test": "craco test",
+    "format": "npx prettier --write ./src/**/*",
+    "lint": "npx eslint ./src/**/*"
   },
   "browserslist": {
     "production": [
@@ -25,10 +27,40 @@
     ]
   },
   "eslintConfig": {
+    "env": {
+      "browser": true
+    },
     "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "@typescript-eslint",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "tabWidth": 4
+        }
+      ],
+      "indent": [
+        "error",
+        4
+      ],
+      "react/react-in-jsx-scope": "off"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
+  "prettier": {
+    "tabWidth": 4
   },
   "dependencies": {
     "@craco/craco": "^7.0.0-alpha.7",
@@ -40,7 +72,13 @@
     "@types/node": "^16.11.45",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^4.2.1",
     "phaser": "^3.55.2",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
