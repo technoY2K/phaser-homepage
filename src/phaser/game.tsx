@@ -1,20 +1,7 @@
 import { useEffect, useState } from "react";
 import Phaser from "phaser";
-
-enum GameState {
-  Ready = "READY",
-}
-class Scene extends Phaser.Scene {
-  create() {
-    const screenCenterX =
-      this.cameras.main.worldView.x + this.cameras.main.width / 2;
-    const screenCenterY =
-      this.cameras.main.worldView.y + this.cameras.main.height / 2;
-    this.add.text(screenCenterX, screenCenterY, "Welcome").setOrigin(0.5);
-
-    this.game.events.emit(GameState.Ready, true);
-  }
-}
+import { GameState } from "./phaser.types";
+import { LoadingScene } from "./scenes/loading";
 
 export function Game() {
   const [isReady, setReady] = useState(false);
@@ -54,12 +41,13 @@ export function Game() {
       },
       callbacks: {
         postBoot: (game) => {
+          windowSizedChanged(game);
           window.onresize = () => windowSizedChanged(game);
         },
       },
       canvasStyle: `display: block; width: 100%; height: 100%;`,
       autoFocus: true,
-      scene: [Scene],
+      scene: [LoadingScene],
     };
 
     const game = new Phaser.Game(config);
