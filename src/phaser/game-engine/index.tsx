@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Phaser from "phaser";
-import { GameState } from "./phaser.types";
-import { LoadingScene } from "./scenes/loading";
+import { GameState } from "../phaser.types";
+import { InitialScene } from "../scenes/InitialScene";
 
-export function Game() {
+export function GameEngine() {
   const [isReady, setReady] = useState(false);
 
   function windowSizedChanged(game: Phaser.Game) {
@@ -47,7 +47,7 @@ export function Game() {
       },
       canvasStyle: `display: block; width: 100%; height: 100%;`,
       autoFocus: true,
-      scene: [LoadingScene],
+      scene: [InitialScene],
     };
 
     const game = new Phaser.Game(config);

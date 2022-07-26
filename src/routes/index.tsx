@@ -7,7 +7,7 @@ const ROOT = "/";
 
 export default function MainRouter() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div></div>}>
       <Routes>
         <Route path={ROOT} element={<HomePage />} />
       </Routes>
