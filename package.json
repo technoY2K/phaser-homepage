@@ -37,7 +37,6 @@
       "plugin:prettier/recommended"
     ],
     "plugins": [
-      "react",
       "@typescript-eslint"
     ],
     "rules": {
@@ -65,7 +64,6 @@
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^4.2.1",
     "phaser": "^3.55.2",
     "prettier": "^2.7.1",
