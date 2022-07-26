@@ -1,9 +1,7 @@
 import Phaser from "phaser";
 import { GameState } from "../phaser.types";
 
-export class InitialScene extends Phaser.Scene {
-  private king!: Phaser.GameObjects.Sprite;
-
+export class Loading extends Phaser.Scene {
   constructor() {
     super("loading-scene");
   }
@@ -14,7 +12,7 @@ export class InitialScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.king = this.add.sprite(100, 100, "king");
     this.game.events.emit(GameState.Ready, true);
+    this.scene.start("level-1-scene");
   }
 }

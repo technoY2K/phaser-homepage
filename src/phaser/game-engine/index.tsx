@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Phaser from "phaser";
 import { GameState } from "../phaser.types";
-import { InitialScene } from "../scenes/InitialScene";
+import { Loading, Level1 } from "../scenes";
 
 export function GameEngine() {
   const [isReady, setReady] = useState(false);
@@ -47,7 +47,7 @@ export function GameEngine() {
       },
       canvasStyle: `display: block; width: 100%; height: 100%;`,
       autoFocus: true,
-      scene: [InitialScene],
+      scene: [Loading, Level1],
     };
 
     const game = new Phaser.Game(config);
