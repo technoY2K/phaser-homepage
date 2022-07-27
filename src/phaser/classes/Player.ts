@@ -19,6 +19,9 @@ export class Player extends Actor {
         // physics
         this.getBody().setSize(30, 30);
         this.getBody().setOffset(8, 0);
+
+        // animations
+        this.initAnimations();
     }
 
     update(): void {
@@ -43,5 +46,24 @@ export class Player extends Actor {
             this.checkFlip();
             this.getBody().setOffset(15, 15);
         }
+    }
+
+    private initAnimations(): void {
+        this.scene.anims.create({
+            key: "run",
+            frames: this.scene.anims.generateFrameNames("a-king", {
+                prefix: "run-",
+                end: 7,
+            }),
+            frameRate: 8,
+        });
+
+        this.scene.anims.create({
+            key: "attack",
+            frames: this.scene.anims.generateFrameNames("a-king", {
+                prefix: "attack-",
+                end: 2,
+            }),
+        });
     }
 }
