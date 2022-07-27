@@ -14,6 +14,11 @@ export class Loading extends Phaser.Scene {
             "spritesheets/a-king.png",
             "spritesheets/a-king-atlas.json"
         );
+        this.load.image({
+            key: "tiles",
+            url: "tilemaps/tiles/dungeon-16-16.png",
+        });
+        this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dungeon.tmj");
     }
 
     create(): void {
