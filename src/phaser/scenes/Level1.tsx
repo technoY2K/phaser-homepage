@@ -1,4 +1,4 @@
-import { Scene, Tilemaps } from "phaser";
+import { Display, Scene, Tilemaps } from "phaser";
 import { Player } from "../classes/Player";
 
 export class Level1 extends Scene {
@@ -21,12 +21,22 @@ export class Level1 extends Scene {
         this.tileset = this.map.addTilesetImage("dungeon", "tiles");
         this.groundLayer = this.map.createLayer("Ground", this.tileset, -50, -250);
         this.wallsLayer = this.map.createLayer("Walls", this.tileset, -50, -250);
+        this.wallsLayer.setCollisionByProperty({ collides: true });
         this.physics.world.setBounds(0, 0, this.wallsLayer.width, this.wallsLayer.height);
+    }
+
+    private showDebugWalls(): void {
+        const debugGraphics = this.add.graphics().setAlpha(0.7);
+        this.wallsLayer.renderDebug(debugGraphics, {
+            tileColor: null,
+            collidingTileColor: new Display.Color(243, 243, 48, 255),
+        });
     }
 
     create(): void {
         this.initMap();
         this.player = new Player(this, 300, 500);
+        this.physics.add.collider(this.player, this.wallsLayer);
     }
 
     update(): void {
