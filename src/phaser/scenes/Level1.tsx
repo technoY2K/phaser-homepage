@@ -19,19 +19,14 @@ export class Level1 extends Scene {
             tileHeight: 16,
         });
         this.tileset = this.map.addTilesetImage("dungeon", "tiles");
-        this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
-        this.wallsLayer = this.map.createLayer("Walls", this.tileset, 0, 0);
-        this.physics.world.setBounds(
-            0,
-            0,
-            this.wallsLayer.width,
-            this.wallsLayer.height
-        );
+        this.groundLayer = this.map.createLayer("Ground", this.tileset, -50, -250);
+        this.wallsLayer = this.map.createLayer("Walls", this.tileset, -50, -250);
+        this.physics.world.setBounds(0, 0, this.wallsLayer.width, this.wallsLayer.height);
     }
 
     create(): void {
         this.initMap();
-        this.player = new Player(this, 100, 100);
+        this.player = new Player(this, 300, 500);
     }
 
     update(): void {

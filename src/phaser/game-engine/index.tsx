@@ -59,10 +59,5 @@ export function GameEngine() {
         };
     }, []);
 
-    return (
-        <div
-            id="game"
-            style={{ visibility: isReady ? "visible" : "hidden" }}
-        ></div>
-    );
+    return <div id="game" style={{ visibility: isReady ? "visible" : "hidden" }}></div>;
 }
