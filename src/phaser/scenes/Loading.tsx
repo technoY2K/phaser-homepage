@@ -41,5 +41,6 @@ export class Loading extends Phaser.Scene {
     create(): void {
         this.game.events.emit(GameState.Ready, true);
         this.scene.start(STRINGS.level1Scene.key);
+        this.scene.start("ui-score");
     }
 }
