@@ -1,24 +1,32 @@
 import Phaser from "phaser";
 import { GameState } from "../phaser.types";
+import STRINGS from "./index.strings";
 
+const {
+    assets: { dungeonTile, kingSprite },
+} = STRINGS;
 export class Loading extends Phaser.Scene {
     constructor() {
-        super("loading-scene");
+        super(STRINGS.loadingScene.key);
     }
 
     preload(): void {
-        this.load.baseURL = "/assets/";
-        this.load.image("king", "sprites/king.png");
-        this.load.atlas("a-king", "spritesheets/a-king.png", "spritesheets/a-king-atlas.json");
+        this.load.baseURL = STRINGS.assets.path;
+        this.load.image(kingSprite.image.key, kingSprite.image.path);
+        this.load.atlas(
+            kingSprite.atlas.key,
+            kingSprite.atlas.image,
+            kingSprite.atlas.path
+        );
         this.load.image({
-            key: "tiles",
-            url: "tilemaps/tiles/dungeon-16-16.png",
+            key: dungeonTile.image.key,
+            url: dungeonTile.image.path,
         });
-        this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dungeon.tmj");
+        this.load.tilemapTiledJSON(dungeonTile.json.key, dungeonTile.json.path);
     }
 
     create(): void {
         this.game.events.emit(GameState.Ready, true);
-        this.scene.start("level-1-scene");
+        this.scene.start(STRINGS.level1Scene.key);
     }
 }

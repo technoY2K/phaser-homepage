@@ -40,12 +40,6 @@
       "@typescript-eslint"
     ],
     "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "printWidth": 100
-        }
-      ],
       "react/react-in-jsx-scope": "off",
       "@typescript-eslint/no-unused-vars": "error"
     },
@@ -55,8 +49,7 @@
     }
   },
   "prettier": {
-    "tabWidth": 4,
-    "printWidth": 100
+    "tabWidth": 4
   },
   "dependencies": {
     "@craco/craco": "^7.0.0-alpha.7",
