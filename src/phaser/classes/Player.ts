@@ -24,6 +24,25 @@ export class Player extends Actor {
         this.initAnimations();
     }
 
+    private initAnimations(): void {
+        this.scene.anims.create({
+            key: "run",
+            frames: this.scene.anims.generateFrameNames("a-king", {
+                prefix: "run-",
+                end: 7,
+            }),
+            frameRate: 8,
+        });
+
+        this.scene.anims.create({
+            key: "attack",
+            frames: this.scene.anims.generateFrameNames("a-king", {
+                prefix: "attack-",
+                end: 2,
+            }),
+        });
+    }
+
     update(): void {
         this.getBody().setVelocity(0);
 
@@ -50,24 +69,5 @@ export class Player extends Actor {
             this.getBody().setOffset(15, 15);
             !this.anims.isPlaying && this.anims.play("run", true);
         }
-    }
-
-    private initAnimations(): void {
-        this.scene.anims.create({
-            key: "run",
-            frames: this.scene.anims.generateFrameNames("a-king", {
-                prefix: "run-",
-                end: 7,
-            }),
-            frameRate: 8,
-        });
-
-        this.scene.anims.create({
-            key: "attack",
-            frames: this.scene.anims.generateFrameNames("a-king", {
-                prefix: "attack-",
-                end: 2,
-            }),
-        });
     }
 }

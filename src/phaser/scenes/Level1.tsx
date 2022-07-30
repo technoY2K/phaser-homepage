@@ -87,6 +87,16 @@ export class Level1 extends Scene {
         });
     }
 
+    private initCamera(): void {
+        this.cameras.main.setSize(
+            this.game.scale.width,
+            this.game.scale.height
+        );
+
+        this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
+        this.cameras.main.setZoom(2);
+    }
+
     private showDebugWalls(): void {
         const debugGraphics = this.add.graphics().setAlpha(0.7);
         this.exteriorLayer.renderDebug(debugGraphics, {
@@ -96,7 +106,10 @@ export class Level1 extends Scene {
     }
 
     create(): void {
+        // map
         this.initMap();
+
+        // player
         this.player = new Player(this, 600, 500);
 
         // create chests and points
@@ -106,6 +119,9 @@ export class Level1 extends Scene {
         this.physics.add.collider(this.player, this.wallsLayer);
         this.physics.add.collider(this.player, this.furnitureLayer);
         this.physics.add.collider(this.player, this.exteriorLayer);
+
+        // camera
+        this.initCamera();
     }
 
     update(): void {
