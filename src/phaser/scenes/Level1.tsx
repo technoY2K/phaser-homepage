@@ -8,8 +8,12 @@ export class Level1 extends Scene {
     private player!: Player;
     private map!: Tilemaps.Tilemap;
     private tileset!: Tilemaps.Tileset;
-    private wallsLayer!: Tilemaps.TilemapLayer;
+
+    // layers
     private groundLayer!: Tilemaps.TilemapLayer;
+    private furnitureLayer!: Tilemaps.TilemapLayer;
+    private wallsLayer!: Tilemaps.TilemapLayer;
+    private exteriorLayer!: Tilemaps.TilemapLayer;
 
     constructor() {
         super(STRINGS.level1Scene.key);
@@ -27,19 +31,23 @@ export class Level1 extends Scene {
             assets.office.image.key
         );
 
-        this.groundLayer = this.map.createLayer(
-            "Ground",
+        this.groundLayer = this.map.createLayer("Ground", this.tileset, 400, 0);
+
+        this.furnitureLayer = this.map.createLayer(
+            "Furniture",
             this.tileset,
-            -50,
-            -250
+            400,
+            0
         );
 
-        // this.wallsLayer = this.map.createLayer(
-        //     "Walls",
-        //     this.tileset,
-        //     -50,
-        //     -250
-        // );
+        this.wallsLayer = this.map.createLayer("Walls", this.tileset, 400, 0);
+
+        this.exteriorLayer = this.map.createLayer(
+            "Exterior",
+            this.tileset,
+            400,
+            0
+        );
 
         // // set collision
         // this.wallsLayer.setCollisionByProperty({ collides: true });
