@@ -20,6 +20,7 @@ export class Level1 extends Scene {
     }
 
     private initMap(): void {
+        // tileset
         this.map = this.make.tilemap({
             key: assets.office.key,
             tileWidth: 16,
@@ -31,6 +32,7 @@ export class Level1 extends Scene {
             assets.office.image.key
         );
 
+        // create layers
         this.groundLayer = this.map.createLayer("Ground", this.tileset, 400, 0);
 
         this.furnitureLayer = this.map.createLayer(
@@ -49,19 +51,23 @@ export class Level1 extends Scene {
             0
         );
 
-        // // set collision
-        // this.wallsLayer.setCollisionByProperty({ collides: true });
-        // this.physics.world.setBounds(
-        //     0,
-        //     0,
-        //     this.wallsLayer.width,
-        //     this.wallsLayer.height
-        // );
+        // // set collision to layers
+        this.wallsLayer.setCollisionByProperty({ collides: true });
+        this.furnitureLayer.setCollisionByProperty({ collides: true });
+        this.exteriorLayer.setCollisionByProperty({ collides: true });
+
+        // set world bounds
+        this.physics.world.setBounds(
+            0,
+            0,
+            this.exteriorLayer.width,
+            this.exteriorLayer.height
+        );
     }
 
     private showDebugWalls(): void {
         const debugGraphics = this.add.graphics().setAlpha(0.7);
-        this.wallsLayer.renderDebug(debugGraphics, {
+        this.exteriorLayer.renderDebug(debugGraphics, {
             tileColor: null,
             collidingTileColor: new Display.Color(243, 243, 48, 255),
         });
@@ -70,7 +76,11 @@ export class Level1 extends Scene {
     create(): void {
         this.initMap();
         this.player = new Player(this, 600, 500);
+
+        // add collider to player
         this.physics.add.collider(this.player, this.wallsLayer);
+        this.physics.add.collider(this.player, this.furnitureLayer);
+        this.physics.add.collider(this.player, this.exteriorLayer);
     }
 
     update(): void {
