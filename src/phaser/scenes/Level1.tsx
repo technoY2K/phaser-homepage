@@ -17,14 +17,14 @@ export class Level1 extends Scene {
 
     private initMap(): void {
         this.map = this.make.tilemap({
-            key: assets.dungeonTile.key,
+            key: assets.office.key,
             tileWidth: 16,
             tileHeight: 16,
         });
 
         this.tileset = this.map.addTilesetImage(
-            assets.dungeonTile.key,
-            assets.dungeonTile.image.key
+            assets.office.key,
+            assets.office.image.key
         );
 
         this.groundLayer = this.map.createLayer(
@@ -34,21 +34,21 @@ export class Level1 extends Scene {
             -250
         );
 
-        this.wallsLayer = this.map.createLayer(
-            "Walls",
-            this.tileset,
-            -50,
-            -250
-        );
+        // this.wallsLayer = this.map.createLayer(
+        //     "Walls",
+        //     this.tileset,
+        //     -50,
+        //     -250
+        // );
 
-        // set collision
-        this.wallsLayer.setCollisionByProperty({ collides: true });
-        this.physics.world.setBounds(
-            0,
-            0,
-            this.wallsLayer.width,
-            this.wallsLayer.height
-        );
+        // // set collision
+        // this.wallsLayer.setCollisionByProperty({ collides: true });
+        // this.physics.world.setBounds(
+        //     0,
+        //     0,
+        //     this.wallsLayer.width,
+        //     this.wallsLayer.height
+        // );
     }
 
     private showDebugWalls(): void {

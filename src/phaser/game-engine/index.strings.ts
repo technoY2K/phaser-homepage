@@ -1,5 +1,5 @@
 export default {
     htmlElementMountId: "game",
-    gameTitle: "XYZ",
-    gameBackgroundColor: "#351f1b",
+    gameTitle: "MetaCortex",
+    gameBackgroundColor: "#818C97",
 };

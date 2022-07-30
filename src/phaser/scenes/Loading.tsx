@@ -3,7 +3,7 @@ import { GameState } from "../phaser.types";
 import STRINGS from "./index.strings";
 
 const {
-    assets: { dungeonTile, kingSprite },
+    assets: { office, kingSprite },
 } = STRINGS;
 export class Loading extends Phaser.Scene {
     constructor() {
@@ -12,17 +12,20 @@ export class Loading extends Phaser.Scene {
 
     preload(): void {
         this.load.baseURL = STRINGS.assets.path;
+
         this.load.image(kingSprite.image.key, kingSprite.image.path);
+
         this.load.atlas(
             kingSprite.atlas.key,
             kingSprite.atlas.image,
             kingSprite.atlas.path
         );
+
         this.load.image({
-            key: dungeonTile.image.key,
-            url: dungeonTile.image.path,
+            key: office.image.key,
+            url: office.image.path,
         });
-        this.load.tilemapTiledJSON(dungeonTile.json.key, dungeonTile.json.path);
+        this.load.tilemapTiledJSON(office.json.key, office.json.path);
     }
 
     create(): void {

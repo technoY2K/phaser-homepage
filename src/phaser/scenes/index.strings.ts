@@ -12,15 +12,15 @@ export default {
                 path: "spritesheets/a-king-atlas.json",
             },
         },
-        dungeonTile: {
-            key: "dungeon",
+        office: {
+            key: "office",
             image: {
-                key: "tiles",
-                path: "tilemaps/tiles/dungeon-16-16.png",
+                key: "office-tile",
+                path: "tilemaps/tiles/office-interior-16-16.png",
             },
             json: {
-                key: "dungeon",
-                path: "tilemaps/json/dungeon.tmj",
+                key: "office",
+                path: "tilemaps/json/office-map.tmj",
             },
         },
     },
