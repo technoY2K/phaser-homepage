@@ -36,21 +36,21 @@ export class Level1 extends Scene {
         );
 
         // create layers
-        this.groundLayer = this.map.createLayer("Ground", this.tileset, 400, 0);
+        this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
 
         this.furnitureLayer = this.map.createLayer(
             "Furniture",
             this.tileset,
-            400,
+            0,
             0
         );
 
-        this.wallsLayer = this.map.createLayer("Walls", this.tileset, 400, 0);
+        this.wallsLayer = this.map.createLayer("Walls", this.tileset, 0, 0);
 
         this.exteriorLayer = this.map.createLayer(
             "Exterior",
             this.tileset,
-            400,
+            0,
             0
         );
 
@@ -75,7 +75,7 @@ export class Level1 extends Scene {
 
         this.chests = chestPoints.map((cp) =>
             this.physics.add
-                .sprite(cp.x + 400, cp.y, "office-sprite", 219)
+                .sprite(cp.x, cp.y, "office-sprite", 219)
                 .setScale(2)
         );
 
@@ -110,7 +110,7 @@ export class Level1 extends Scene {
         this.initMap();
 
         // player
-        this.player = new Player(this, 600, 500);
+        this.player = new Player(this, 100, 500);
 
         // create chests and points
         this.initChests();
