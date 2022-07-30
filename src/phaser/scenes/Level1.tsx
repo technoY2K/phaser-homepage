@@ -80,7 +80,7 @@ export class Level1 extends Scene {
         );
 
         this.chests.forEach((chest) => {
-            this.physics.add.overlap(this.player, chest, (player, chest) => {
+            this.physics.add.overlap(this.player, chest, (_, chest) => {
                 chest.destroy();
                 this.cameras.main.flash();
             });
