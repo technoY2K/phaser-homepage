@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Phaser from "phaser";
 import { GameState } from "../phaser.types";
 import { Loading, Level1 } from "../scenes";
+import STRINGS from "./index.strings";
 
 export function GameEngine() {
     const [isReady, setReady] = useState(false);
@@ -20,10 +21,10 @@ export function GameEngine() {
 
     useEffect(() => {
         const config: Phaser.Types.Core.GameConfig = {
-            parent: "game",
-            title: "Cloud Land",
+            parent: STRINGS.htmlElementMountId,
+            title: STRINGS.gameTitle,
             type: Phaser.WEBGL,
-            backgroundColor: "#351f1b",
+            backgroundColor: STRINGS.gameBackgroundColor,
             scale: {
                 mode: Phaser.Scale.ScaleModes.NONE,
                 width: window.innerWidth,
@@ -59,5 +60,10 @@ export function GameEngine() {
         };
     }, []);
 
-    return <div id="game" style={{ visibility: isReady ? "visible" : "hidden" }}></div>;
+    return (
+        <div
+            id={STRINGS.htmlElementMountId}
+            style={{ visibility: isReady ? "visible" : "hidden" }}
+        ></div>
+    );
 }

@@ -21,6 +21,8 @@ export class Level1 extends Scene {
         this.tileset = this.map.addTilesetImage("dungeon", "tiles");
         this.groundLayer = this.map.createLayer("Ground", this.tileset, -50, -250);
         this.wallsLayer = this.map.createLayer("Walls", this.tileset, -50, -250);
+
+        // set collision
         this.wallsLayer.setCollisionByProperty({ collides: true });
         this.physics.world.setBounds(0, 0, this.wallsLayer.width, this.wallsLayer.height);
     }
