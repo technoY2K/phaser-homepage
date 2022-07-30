@@ -25,7 +25,17 @@ export class Loading extends Phaser.Scene {
             key: office.image.key,
             url: office.image.path,
         });
+
         this.load.tilemapTiledJSON(office.json.key, office.json.path);
+
+        this.load.spritesheet(
+            "office-sprite",
+            "tilemaps/tiles/office-interior-16-16.png",
+            {
+                frameWidth: 16,
+                frameHeight: 16,
+            }
+        );
     }
 
     create(): void {

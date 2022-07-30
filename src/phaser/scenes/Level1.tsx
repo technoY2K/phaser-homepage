@@ -1,11 +1,14 @@
-import { Display, Scene, Tilemaps } from "phaser";
+import { Display, GameObjects, Scene, Tilemaps } from "phaser";
 import { Player } from "../classes/Player";
 import STRINGS from "./index.strings";
+import { gameObjectsToObjectPoints } from "./utils";
 
 const { assets } = STRINGS;
 
 export class Level1 extends Scene {
     private player!: Player;
+    private chests!: GameObjects.Sprite[];
+
     private map!: Tilemaps.Tilemap;
     private tileset!: Tilemaps.Tileset;
 
@@ -65,6 +68,25 @@ export class Level1 extends Scene {
         );
     }
 
+    private initChests(): void {
+        const chestPoints = gameObjectsToObjectPoints(
+            this.map.filterObjects("Chests", (c) => c.name === "ChestPoint")
+        );
+
+        this.chests = chestPoints.map((cp) =>
+            this.physics.add
+                .sprite(cp.x + 400, cp.y, "office-sprite", 219)
+                .setScale(2)
+        );
+
+        this.chests.forEach((chest) => {
+            this.physics.add.overlap(this.player, chest, (player, chest) => {
+                chest.destroy();
+                this.cameras.main.flash();
+            });
+        });
+    }
+
     private showDebugWalls(): void {
         const debugGraphics = this.add.graphics().setAlpha(0.7);
         this.exteriorLayer.renderDebug(debugGraphics, {
@@ -76,6 +98,9 @@ export class Level1 extends Scene {
     create(): void {
         this.initMap();
         this.player = new Player(this, 600, 500);
+
+        // create chests and points
+        this.initChests();
 
         // add collider to player
         this.physics.add.collider(this.player, this.wallsLayer);
