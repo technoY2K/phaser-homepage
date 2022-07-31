@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Phaser from "phaser";
-import { GameState } from "../phaser.types";
+import { GameState, GameMessage } from "../phaser.types";
 import { Loading, Level1, UIScore } from "../scenes";
 import STRINGS from "./index.strings";
 
@@ -16,6 +16,14 @@ export function GameEngine() {
                     `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`
                 );
             }, 100);
+        }
+    }
+
+    function gameEventHandler(arg: GameMessage) {
+        setReady(true);
+
+        if (arg.type === "game") {
+            console.log("this works");
         }
     }
 
@@ -52,7 +60,7 @@ export function GameEngine() {
         };
 
         const game = new Phaser.Game(config);
-        game.events.on(GameState.Ready, setReady);
+        game.events.on(GameState.Ready, gameEventHandler);
 
         return () => {
             setReady(false);
