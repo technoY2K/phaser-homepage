@@ -1,5 +1,6 @@
-import { Scene } from "phaser";
+import { Game, Scene } from "phaser";
 import { Text } from "./Text";
+import { GameEvent, GameMessage, GameMessageType } from "../phaser.types";
 
 export enum ScoreOperations {
     INCREASE,
@@ -36,6 +37,15 @@ export class Score extends Text {
         }
 
         this.setText(`Score: ${this.scoreValue}`);
+    }
+
+    public emitScoreChange(game: Game): void {
+        const message: GameMessage = {
+            type: GameMessageType.StateChange,
+            payload: { value: this.scoreValue },
+        };
+
+        game.events.emit(GameEvent.Message, message);
     }
 
     public getScore(): number {

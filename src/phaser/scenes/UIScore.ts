@@ -10,6 +10,7 @@ export class UIScore extends Scene {
         super("ui-score");
         this.chestLootHandler = () => {
             this.score.changeValue(ScoreOperations.INCREASE, 10);
+            this.score.emitScoreChange(this.game);
         };
     }
 

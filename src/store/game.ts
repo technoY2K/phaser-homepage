@@ -1,10 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const slice = createSlice({
     name: "game",
     initialState: 0,
     reducers: {
-        increment: (state) => (state += 1),
+        increment: (state, action: PayloadAction<number>) => {
+            state = action.payload;
+            return state;
+        },
     },
 });
 

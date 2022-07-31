@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { GameMessage, GameState } from "../phaser.types";
+import { GameEvent, GameMessage, GameMessageType } from "../phaser.types";
 import STRINGS from "./index.strings";
 
 const {
@@ -40,10 +40,10 @@ export class Loading extends Phaser.Scene {
 
     create(): void {
         const message: GameMessage = {
-            type: "game",
+            type: GameMessageType.Ready,
         };
 
-        this.game.events.emit(GameState.Ready, message);
+        this.game.events.emit(GameEvent.Message, message);
         this.scene.start(STRINGS.level1Scene.key);
         this.scene.start("ui-score");
     }

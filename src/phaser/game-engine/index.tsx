@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import Phaser from "phaser";
-import { GameState, GameMessage } from "../phaser.types";
+import { GameEvent, GameMessage, GameMessageType } from "../phaser.types";
 import { Loading, Level1, UIScore } from "../scenes";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, AppState } from "~/store/store";
+import { increment } from "~/store/game";
 import STRINGS from "./index.strings";
 
 export function GameEngine() {
     const [isReady, setReady] = useState(false);
+    const dispatch: AppDispatch = useDispatch();
+    const n = useSelector((state: AppState) => state.game);
+
+    console.log(n, "N");
 
     function windowSizedChanged(game: Phaser.Game) {
         if (game.isBooted) {
@@ -19,9 +26,18 @@ export function GameEngine() {
         }
     }
 
-    function gameEventHandler(gm: GameMessage) {
-        if (gm.type === "game") {
-            setReady(true);
+    function gameEventHandler(gm: GameMessage): void {
+        switch (gm.type) {
+            case GameMessageType.Ready:
+                setReady(true);
+                break;
+
+            case GameMessageType.StateChange:
+                dispatch(increment(gm.payload?.value ?? 0));
+                break;
+
+            default:
+                break;
         }
     }
 
@@ -58,7 +74,7 @@ export function GameEngine() {
         };
 
         const game = new Phaser.Game(config);
-        game.events.on(GameState.Ready, gameEventHandler);
+        game.events.on(GameEvent.Message, gameEventHandler);
 
         return () => {
             setReady(false);
