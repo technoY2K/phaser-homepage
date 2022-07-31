@@ -41,9 +41,6 @@ export class Loading extends Phaser.Scene {
     create(): void {
         const message: GameMessage = {
             type: "game",
-            payload: {
-                message: "Game has initialized",
-            },
         };
 
         this.game.events.emit(GameState.Ready, message);

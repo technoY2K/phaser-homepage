@@ -4,5 +4,5 @@ export enum GameState {
 
 export type GameMessage = {
     type: string;
-    payload: { [key: string]: string };
+    payload?: { [key: string]: string };
 };

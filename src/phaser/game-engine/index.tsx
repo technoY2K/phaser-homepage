@@ -19,11 +19,9 @@ export function GameEngine() {
         }
     }
 
-    function gameEventHandler(arg: GameMessage) {
-        setReady(true);
-
-        if (arg.type === "game") {
-            console.log("this works");
+    function gameEventHandler(gm: GameMessage) {
+        if (gm.type === "game") {
+            setReady(true);
         }
     }
 
