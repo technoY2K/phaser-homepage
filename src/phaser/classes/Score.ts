@@ -44,12 +44,12 @@ export class Score extends Text {
     }
 
     public emitScoreChange(game: Game): void {
-        const paylaod: GamePayload = {
+        const payload: GamePayload = {
             type: GameEventType.StateChange,
             data: this.scoreValue,
         };
 
-        game.events.emit(GameEvent.Message, paylaod);
+        game.events.emit(GameEvent.Message, payload);
     }
 
     public getScore(): number {
