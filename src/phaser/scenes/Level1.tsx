@@ -1,5 +1,6 @@
 import { Display, GameObjects, Scene, Tilemaps } from "phaser";
 import { Player } from "../classes/Player";
+import { GameEvent } from "../phaser.types";
 import STRINGS from "./index.strings";
 import { gameObjectsToObjectPoints } from "./utils";
 
@@ -81,7 +82,7 @@ export class Level1 extends Scene {
 
         this.chests.forEach((chest) => {
             this.physics.add.overlap(this.player, chest, (_, chest) => {
-                this.game.events.emit(STRINGS.events.chestLooted);
+                this.game.events.emit(GameEvent.ChestLooted);
                 chest.destroy();
                 this.cameras.main.flash();
             });

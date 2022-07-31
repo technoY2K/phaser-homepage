@@ -24,9 +24,6 @@ export default {
             },
         },
     },
-    events: {
-        chestLooted: "chest-looted",
-    },
     loadingScene: {
         key: "loading-scene",
     },

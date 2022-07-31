@@ -12,7 +12,7 @@ export function GameEngine() {
     const dispatch: AppDispatch = useDispatch();
     const n = useSelector((state: AppState) => state.game);
 
-    console.log(n, "N");
+    console.log(n, "VALUE FROM STATE");
 
     function windowSizedChanged(game: Phaser.Game) {
         if (game.isBooted) {

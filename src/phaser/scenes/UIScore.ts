@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import { Score, ScoreOperations } from "../classes/Score";
-import STRINGS from "./index.strings";
+import { GameEvent } from "../phaser.types";
 
 export class UIScore extends Scene {
     private score!: Score;
@@ -15,11 +15,7 @@ export class UIScore extends Scene {
     }
 
     private initListeners(): void {
-        this.game.events.on(
-            STRINGS.events.chestLooted,
-            this.chestLootHandler,
-            this
-        );
+        this.game.events.on(GameEvent.ChestLooted, this.chestLootHandler, this);
     }
 
     create(): void {

@@ -1,5 +1,6 @@
 export enum GameEvent {
     Message = "ping",
+    ChestLooted = "looted",
 }
 
 export enum GameMessageType {
