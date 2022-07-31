@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import { Score, ScoreOperations } from "../classes/Score";
-import { GameEvent } from "../phaser.types";
+import { GameEvent } from "~/phaser/game-engine/game.types";
 
 export class UIScore extends Scene {
     private score!: Score;

@@ -3,12 +3,12 @@ export enum GameEvent {
     ChestLooted = "looted",
 }
 
-export enum GameMessageType {
+export enum GameEventType {
     Ready = "ready",
     StateChange = "state",
 }
 
-export type GameMessage = {
-    type: GameMessageType;
-    payload?: { value: number };
+export type GamePayload = {
+    type: GameEventType;
+    data?: number;
 };

@@ -1,6 +1,6 @@
 import { Display, GameObjects, Scene, Tilemaps } from "phaser";
 import { Player } from "../classes/Player";
-import { GameEvent } from "../phaser.types";
+import { GameEvent } from "~/phaser/game-engine/game.types";
 import STRINGS from "./index.strings";
 import { gameObjectsToObjectPoints } from "./utils";
 

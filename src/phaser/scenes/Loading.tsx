@@ -1,5 +1,9 @@
 import Phaser from "phaser";
-import { GameEvent, GameMessage, GameMessageType } from "../phaser.types";
+import {
+    GameEvent,
+    GameEventType,
+    GamePayload,
+} from "~/phaser/game-engine/game.types";
 import STRINGS from "./index.strings";
 
 const {
@@ -39,11 +43,11 @@ export class Loading extends Phaser.Scene {
     }
 
     create(): void {
-        const message: GameMessage = {
-            type: GameMessageType.Ready,
+        const paylaod: GamePayload = {
+            type: GameEventType.Ready,
         };
 
-        this.game.events.emit(GameEvent.Message, message);
+        this.game.events.emit(GameEvent.Message, paylaod);
         this.scene.start(STRINGS.level1Scene.key);
         this.scene.start("ui-score");
     }

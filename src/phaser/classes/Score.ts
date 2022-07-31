@@ -1,6 +1,10 @@
 import { Game, Scene } from "phaser";
 import { Text } from "./Text";
-import { GameEvent, GameMessage, GameMessageType } from "../phaser.types";
+import {
+    GameEvent,
+    GameEventType,
+    GamePayload,
+} from "~/phaser/game-engine/game.types";
 
 export enum ScoreOperations {
     INCREASE,
@@ -40,12 +44,12 @@ export class Score extends Text {
     }
 
     public emitScoreChange(game: Game): void {
-        const message: GameMessage = {
-            type: GameMessageType.StateChange,
-            payload: { value: this.scoreValue },
+        const paylaod: GamePayload = {
+            type: GameEventType.StateChange,
+            data: this.scoreValue,
         };
 
-        game.events.emit(GameEvent.Message, message);
+        game.events.emit(GameEvent.Message, paylaod);
     }
 
     public getScore(): number {

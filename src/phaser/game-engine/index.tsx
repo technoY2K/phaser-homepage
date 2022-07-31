@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Phaser from "phaser";
-import { GameEvent, GameMessage, GameMessageType } from "../phaser.types";
+import { GameEvent, GameEventType, GamePayload } from "./game.types";
 import { Loading, Level1, UIScore } from "../scenes";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, AppState } from "~/store/store";
@@ -26,14 +26,14 @@ export function GameEngine() {
         }
     }
 
-    function gameEventHandler(gm: GameMessage): void {
+    function gameEventHandler(gm: GamePayload): void {
         switch (gm.type) {
-            case GameMessageType.Ready:
+            case GameEventType.Ready:
                 setReady(true);
                 break;
 
-            case GameMessageType.StateChange:
-                dispatch(increment(gm.payload?.value ?? 0));
+            case GameEventType.StateChange:
+                dispatch(increment(gm.data ?? 0));
                 break;
 
             default:
