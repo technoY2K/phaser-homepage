@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import Phaser from "phaser";
 import GAME_CONFIG from "./config";
 import { GameEvent, GameEventType, GamePayload } from "./game.types";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, AppState } from "~/store/store";
-import { increment } from "~/store/game";
+import { useSelector } from "react-redux";
+import { AppState, useAppDispatch } from "~/store/store";
 import STRINGS from "./index.strings";
 
 export function GameEngine() {
     const [isReady, setReady] = useState(false);
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const n = useSelector((state: AppState) => state.game);
 
     console.log(n, "VALUE FROM STATE");
@@ -21,7 +20,9 @@ export function GameEngine() {
                 break;
 
             case GameEventType.StateChange:
-                dispatch(increment(gm.data ?? 0));
+                if (gm.updateState) {
+                    dispatch(gm.updateState());
+                }
                 break;
 
             default:

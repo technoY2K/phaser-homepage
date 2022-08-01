@@ -1,3 +1,5 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+
 export enum GameEvent {
     Message = "ping",
     ChestLooted = "looted",
@@ -8,7 +10,7 @@ export enum GameEventType {
     StateChange = "state",
 }
 
-export type GamePayload = {
+export type GamePayload<T = undefined> = {
     type: GameEventType;
-    data?: number;
+    updateState?: () => PayloadAction<T>;
 };
