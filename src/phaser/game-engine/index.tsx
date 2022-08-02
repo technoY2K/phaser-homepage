@@ -41,9 +41,12 @@ export function GameEngine() {
     }, []);
 
     return (
-        <div
-            id={STRINGS.htmlElementMountId}
-            style={{ visibility: isReady ? "visible" : "hidden" }}
-        ></div>
+        <main>
+            <div id="dialog-modal">Messages will go here</div>
+            <div
+                id={STRINGS.htmlElementMountId}
+                style={{ visibility: isReady ? "visible" : "hidden" }}
+            ></div>
+        </main>
     );
 }
