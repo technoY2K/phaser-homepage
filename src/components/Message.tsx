@@ -16,7 +16,7 @@ const baseStyle: React.CSSProperties = {
 export default function Message({
     message = "",
     trail = 35,
-    onMessageEnded = () => {},
+    onMessageEnded,
     forceShowFullMessage = false,
 }: MessageProps) {
     const items = useMemo(
@@ -33,5 +33,26 @@ export default function Message({
         [message]
     );
 
-    return <div style={baseStyle}>Message</div>;
+    const transitions = useTransition(items, {
+        trail,
+        from: { display: "none" },
+        enter: { display: "" },
+        onRest: (status, controller, item) => {
+            if (item.key === items.length - 1) {
+                onMessageEnded();
+            }
+        },
+    });
+
+    return (
+        <div style={baseStyle}>
+            {forceShowFullMessage && <span>{message}</span>}
+            {!forceShowFullMessage &&
+                transitions((styles, { item, key }) => (
+                    <animated.span key={key} style={styles}>
+                        {item}
+                    </animated.span>
+                ))}
+        </div>
+    );
 }
