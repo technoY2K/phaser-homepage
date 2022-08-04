@@ -17,8 +17,8 @@ export const DialogContainer = styled.div<DialogContainerProps>`
     left: 50%;
     transform: translate(-50%, 0);
     ${(props) => `
-        min-height: calc(${props.screenHeight} / 3.5)
-        top: calc(${props.screenHeight} - ((${props.screenHeight} / 3.5) + ((${props.screenHeight} / 3.5) * 0.1)))px
+        min-height: calc(${props.screenHeight} / 3.5)px;
+        top: calc(${props.screenHeight} - ((${props.screenHeight} / 3.5) + ((${props.screenHeight} / 3.5) * 0.1)))px;
         width: calc((${props.screenHeight} / 3.5) * 0.8)px;
     `};
 `;
