@@ -1,7 +1,10 @@
 import { Scene, Tilemaps } from "phaser";
+import { Player } from "../classes/Player";
 import { MAPS, SCENES } from "../game.config";
 
 export class CafePurple extends Scene {
+    private player!: Player;
+
     private map!: Tilemaps.Tilemap;
     private tileset!: Tilemaps.Tileset;
 
@@ -34,5 +37,11 @@ export class CafePurple extends Scene {
 
     public create(): void {
         this.initMap();
+
+        this.player = new Player(this, 300, 700);
+    }
+
+    public update(): void {
+        this.player.update();
     }
 }
