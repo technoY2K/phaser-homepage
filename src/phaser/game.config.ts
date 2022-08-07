@@ -16,17 +16,6 @@ export const ASSETS = {
 };
 
 export const MAPS = {
-    office: {
-        key: "office",
-        image: {
-            key: "office-image",
-            path: "tilemaps/tiles/office-interior-16-16.png",
-        },
-        json: {
-            key: "office-tmj",
-            path: "tilemaps/json/office-map.tmj",
-        },
-    },
     cafePurple: {
         key: "cafe",
         image: {
@@ -43,9 +32,6 @@ export const MAPS = {
 export const SCENES = {
     loading: {
         key: "loading-scene",
-    },
-    level1: {
-        key: "level-1-scene",
     },
     cafePurple: {
         key: "cafe-purple-scene",

@@ -1,3 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
+
 import { Display, GameObjects, Scene, Tilemaps } from "phaser";
 import { Player } from "../classes/Player";
 import { GameEvent } from "~/phaser/game-engine/game.types";
