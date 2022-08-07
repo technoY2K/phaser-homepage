@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { Loading, Level1, UIScore } from "../scenes";
+import { Loading, CafePurple, UIScore } from "../scenes";
 import STRINGS from "./index.strings";
 
 function windowSizedChanged(game: Phaser.Game) {
@@ -42,7 +42,7 @@ const config: Phaser.Types.Core.GameConfig = {
     },
     canvasStyle: `display: block; width: 100%; height: 100%;`,
     autoFocus: true,
-    scene: [Loading, Level1, UIScore],
+    scene: [Loading, CafePurple, UIScore],
 };
 
 export default config;

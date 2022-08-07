@@ -28,13 +28,13 @@ export const MAPS = {
         },
     },
     cafePurple: {
-        key: "cafe-purple",
+        key: "cafe",
         image: {
-            key: "cafe-purple-image",
-            path: "tilemaps/tiles/modern-exteriors-32x32.png",
+            key: "modern-ext-image",
+            path: "tilemaps/tiles/modern-ext-32x32.png",
         },
         json: {
-            key: "cafe-purple-tmj",
+            key: "outside",
             path: "tilemaps/json/cafe-purple.tmj",
         },
     },

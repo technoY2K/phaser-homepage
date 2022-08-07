@@ -22,15 +22,18 @@ export class Loading extends Phaser.Scene {
         this.load.atlas(king.atlas.key, king.atlas.image, king.atlas.path);
 
         this.load.image({
-            key: MAPS.office.image.key,
-            url: MAPS.office.image.path,
+            key: MAPS.cafePurple.image.key,
+            url: MAPS.cafePurple.image.path,
         });
 
-        this.load.tilemapTiledJSON(MAPS.office.key, MAPS.office.json.path);
+        this.load.tilemapTiledJSON(
+            MAPS.cafePurple.json.key,
+            MAPS.cafePurple.json.path
+        );
 
         this.load.spritesheet(
-            "office-sprite",
-            "tilemaps/tiles/office-interior-16-16.png",
+            "cafe-sprite",
+            "tilemaps/tiles/modern-exteriors-32x32.png",
             {
                 frameWidth: 16,
                 frameHeight: 16,
@@ -44,7 +47,7 @@ export class Loading extends Phaser.Scene {
         };
 
         this.game.events.emit(GameEvent.Message, paylaod);
-        this.scene.start(SCENES.level1.key);
+        this.scene.start(SCENES.cafePurple.key);
         this.scene.start(SCENES.uiScore.key);
     }
 }

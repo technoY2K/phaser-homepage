@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
- <tileset firstgid="1" name="modern-ext" tilewidth="32" tileheight="32" tilecount="16874" columns="143">
-  <image source="modern-exetriors-32x32.png" width="4576" height="3776"/>
+ <editorsettings>
+  <export target="../json/cafe-purple.tmj" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="outside" tilewidth="32" tileheight="32" tilecount="16874" columns="143">
+  <image source="modern-ext-32x32.png" width="4576" height="3776"/>
  </tileset>
- <layer id="1" name="Gound" width="25" height="25">
+ <layer id="1" name="Ground" width="25" height="25">
   <data encoding="csv">
 716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,
 716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,716,
