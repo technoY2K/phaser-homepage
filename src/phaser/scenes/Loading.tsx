@@ -4,33 +4,33 @@ import {
     GameEventType,
     GamePayload,
 } from "~/phaser/game-engine/game.types";
-import STRINGS from "./index.strings";
+import SCENES_CONFIG from "./index.strings";
 
 const {
-    assets: { office, kingSprite },
-} = STRINGS;
+    assets: { maps, sprites },
+} = SCENES_CONFIG;
 export class Loading extends Phaser.Scene {
     constructor() {
-        super(STRINGS.loadingScene.key);
+        super(SCENES_CONFIG.scenes.loading.key);
     }
 
     preload(): void {
-        this.load.baseURL = STRINGS.assets.path;
+        this.load.baseURL = SCENES_CONFIG.assets.path;
 
-        this.load.image(kingSprite.image.key, kingSprite.image.path);
+        this.load.image(sprites.king.image.key, sprites.king.image.path);
 
         this.load.atlas(
-            kingSprite.atlas.key,
-            kingSprite.atlas.image,
-            kingSprite.atlas.path
+            sprites.king.atlas.key,
+            sprites.king.atlas.image,
+            sprites.king.atlas.path
         );
 
         this.load.image({
-            key: office.image.key,
-            url: office.image.path,
+            key: maps.office.image.key,
+            url: maps.office.image.path,
         });
 
-        this.load.tilemapTiledJSON(office.json.key, office.json.path);
+        this.load.tilemapTiledJSON(maps.office.key, maps.office.json.path);
 
         this.load.spritesheet(
             "office-sprite",
@@ -48,7 +48,7 @@ export class Loading extends Phaser.Scene {
         };
 
         this.game.events.emit(GameEvent.Message, paylaod);
-        this.scene.start(STRINGS.level1Scene.key);
+        this.scene.start(SCENES_CONFIG.scenes.level1.key);
         this.scene.start("ui-score");
     }
 }

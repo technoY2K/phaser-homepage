@@ -4,7 +4,9 @@ import { GameEvent } from "~/phaser/game-engine/game.types";
 import STRINGS from "./index.strings";
 import { gameObjectsToObjectPoints } from "./utils";
 
-const { assets } = STRINGS;
+const {
+    assets: { maps },
+} = STRINGS;
 
 export class Level1 extends Scene {
     private player!: Player;
@@ -20,20 +22,20 @@ export class Level1 extends Scene {
     private exteriorLayer!: Tilemaps.TilemapLayer;
 
     constructor() {
-        super(STRINGS.level1Scene.key);
+        super(STRINGS.scenes.level1.key);
     }
 
     private initMap(): void {
         // tileset
         this.map = this.make.tilemap({
-            key: assets.office.key,
+            key: maps.office.key,
             tileWidth: 16,
             tileHeight: 16,
         });
 
         this.tileset = this.map.addTilesetImage(
-            assets.office.key,
-            assets.office.image.key
+            maps.office.key,
+            maps.office.image.key
         );
 
         // create layers
