@@ -2,7 +2,7 @@ import { Game, Scene } from "phaser";
 import { Text } from "./Text";
 import {
     GameEvent,
-    GameEventType,
+    EventMessage,
     GamePayload,
 } from "~/phaser/game-engine/game.types";
 import { increment } from "~/store/game";
@@ -46,11 +46,11 @@ export class Score extends Text {
 
     public emitScoreChange(game: Game): void {
         const payload: GamePayload<number> = {
-            type: GameEventType.StateChange,
+            message: EventMessage.StateChange,
             updateState: () => increment(this.scoreValue),
         };
 
-        game.events.emit(GameEvent.Message, payload);
+        game.events.emit(GameEvent.MainSystem, payload);
     }
 
     public getScore(): number {

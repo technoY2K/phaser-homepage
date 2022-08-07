@@ -9,8 +9,8 @@ export class CafePurple extends Scene {
     private tileset!: Tilemaps.Tileset;
 
     // layers
-    private groundLayer!: Tilemaps.TilemapLayer;
-    private buildingLayer!: Tilemaps.TilemapLayer;
+    private edificeLayer!: Tilemaps.TilemapLayer;
+    private furnishingLayer!: Tilemaps.TilemapLayer;
 
     constructor() {
         super(SCENES.cafePurple.key);
@@ -26,19 +26,28 @@ export class CafePurple extends Scene {
             MAPS.cafePurple.image.key
         );
 
-        this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
-        this.buildingLayer = this.map.createLayer(
-            "Buildings",
+        this.map.createLayer("Ground", this.tileset, 0, 0);
+        this.map.createLayer("Sidewalk", this.tileset, 0, 0);
+        this.map.createLayer("Road", this.tileset, 0, 0);
+        this.edificeLayer = this.map.createLayer("Edifice", this.tileset, 0, 0);
+        this.furnishingLayer = this.map.createLayer(
+            "Furnishing",
             this.tileset,
             0,
             0
         );
+
+        this.edificeLayer.setCollisionByProperty({ collision: true });
+        this.furnishingLayer.setCollisionByProperty({ collision: true });
     }
 
     public create(): void {
         this.initMap();
 
         this.player = new Player(this, 300, 700);
+
+        this.physics.add.collider(this.player, this.edificeLayer);
+        this.physics.add.collider(this.player, this.furnishingLayer);
     }
 
     public update(): void {
