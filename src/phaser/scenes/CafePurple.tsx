@@ -9,6 +9,7 @@ export class CafePurple extends Scene {
     private tileset!: Tilemaps.Tileset;
 
     // layers
+    private wallLayer!: Tilemaps.TilemapLayer;
     private edificeLayer!: Tilemaps.TilemapLayer;
     private furnishingLayer!: Tilemaps.TilemapLayer;
 
@@ -29,6 +30,7 @@ export class CafePurple extends Scene {
         this.map.createLayer("Ground", this.tileset, 0, 0);
         this.map.createLayer("Sidewalk", this.tileset, 0, 0);
         this.map.createLayer("Road", this.tileset, 0, 0);
+        this.wallLayer = this.map.createLayer("Wall", this.tileset, 0, 0);
         this.edificeLayer = this.map.createLayer("Edifice", this.tileset, 0, 0);
         this.furnishingLayer = this.map.createLayer(
             "Furnishing",
@@ -37,8 +39,11 @@ export class CafePurple extends Scene {
             0
         );
 
+        this.wallLayer.setCollisionByProperty({ collision: true });
         this.edificeLayer.setCollisionByProperty({ collision: true });
         this.furnishingLayer.setCollisionByProperty({ collision: true });
+
+        this.physics.world.setBounds(0, 0, 800, 800);
     }
 
     public create(): void {
@@ -46,6 +51,7 @@ export class CafePurple extends Scene {
 
         this.player = new Player(this, 300, 700);
 
+        this.physics.add.collider(this.player, this.wallLayer);
         this.physics.add.collider(this.player, this.edificeLayer);
         this.physics.add.collider(this.player, this.furnishingLayer);
     }
