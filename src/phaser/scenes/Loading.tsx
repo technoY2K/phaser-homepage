@@ -18,7 +18,6 @@ export class Loading extends Phaser.Scene {
         this.load.baseURL = ASSETS.path;
 
         this.load.image(king.image.key, king.image.path);
-
         this.load.atlas(king.atlas.key, king.atlas.image, king.atlas.path);
 
         this.load.image({
