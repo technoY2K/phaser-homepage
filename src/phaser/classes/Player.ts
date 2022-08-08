@@ -1,5 +1,10 @@
 import Phaser from "phaser";
 import { Actor } from "./Actor";
+import { ASSETS } from "~/phaser/game.config";
+
+const {
+    sprites: { king },
+} = ASSETS;
 
 export class Player extends Actor {
     private keyW: Phaser.Input.Keyboard.Key;
@@ -8,7 +13,7 @@ export class Player extends Actor {
     private keyD: Phaser.Input.Keyboard.Key;
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, "king");
+        super(scene, x, y, king.image.key);
 
         // keys
         this.keyW = this.scene.input.keyboard.addKey("W");
@@ -27,7 +32,7 @@ export class Player extends Actor {
     private initAnimations(): void {
         this.scene.anims.create({
             key: "run",
-            frames: this.scene.anims.generateFrameNames("a-king", {
+            frames: this.scene.anims.generateFrameNames(king.atlas.key, {
                 prefix: "run-",
                 end: 7,
             }),
@@ -36,7 +41,7 @@ export class Player extends Actor {
 
         this.scene.anims.create({
             key: "attack",
-            frames: this.scene.anims.generateFrameNames("a-king", {
+            frames: this.scene.anims.generateFrameNames(king.atlas.key, {
                 prefix: "attack-",
                 end: 2,
             }),

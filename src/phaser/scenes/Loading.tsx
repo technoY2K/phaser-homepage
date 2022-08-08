@@ -1,40 +1,38 @@
 import Phaser from "phaser";
 import {
     GameEvent,
-    GameEventType,
+    EventMessage,
     GamePayload,
 } from "~/phaser/game-engine/game.types";
-import STRINGS from "./index.strings";
+import { ASSETS, MAPS, SCENES } from "../game.config";
 
 const {
-    assets: { office, kingSprite },
-} = STRINGS;
+    sprites: { king },
+} = ASSETS;
 export class Loading extends Phaser.Scene {
     constructor() {
-        super(STRINGS.loadingScene.key);
+        super(SCENES.loading.key);
     }
 
     preload(): void {
-        this.load.baseURL = STRINGS.assets.path;
+        this.load.baseURL = ASSETS.path;
 
-        this.load.image(kingSprite.image.key, kingSprite.image.path);
-
-        this.load.atlas(
-            kingSprite.atlas.key,
-            kingSprite.atlas.image,
-            kingSprite.atlas.path
-        );
+        this.load.image(king.image.key, king.image.path);
+        this.load.atlas(king.atlas.key, king.atlas.image, king.atlas.path);
 
         this.load.image({
-            key: office.image.key,
-            url: office.image.path,
+            key: MAPS.cafePurple.image.key,
+            url: MAPS.cafePurple.image.path,
         });
 
-        this.load.tilemapTiledJSON(office.json.key, office.json.path);
+        this.load.tilemapTiledJSON(
+            MAPS.cafePurple.json.key,
+            MAPS.cafePurple.json.path
+        );
 
         this.load.spritesheet(
-            "office-sprite",
-            "tilemaps/tiles/office-interior-16-16.png",
+            "cafe-sprite",
+            "tilemaps/tiles/modern-exteriors-32x32.png",
             {
                 frameWidth: 16,
                 frameHeight: 16,
@@ -43,12 +41,12 @@ export class Loading extends Phaser.Scene {
     }
 
     create(): void {
-        const paylaod: GamePayload = {
-            type: GameEventType.Ready,
+        const payload: GamePayload = {
+            message: EventMessage.Ready,
         };
 
-        this.game.events.emit(GameEvent.Message, paylaod);
-        this.scene.start(STRINGS.level1Scene.key);
-        this.scene.start("ui-score");
+        this.game.events.emit(GameEvent.MainSystem, payload);
+        this.scene.start(SCENES.cafePurple.key);
+        this.scene.start(SCENES.uiScore.key);
     }
 }
