@@ -1,12 +1,7 @@
 import styled from "styled-components";
 import dialogBorder from "~/images/dialog-border.png";
 
-type DialogContainerProps = {
-    screenWidth: number;
-    screenHeight: number;
-};
-
-export const DialogContainer = styled.div<DialogContainerProps>`
+export const DialogContainer = styled.div`
     image-rendering: pixelated;
     text-transform: uppercase;
     background-color: #e2b27e;
@@ -16,11 +11,9 @@ export const DialogContainer = styled.div<DialogContainerProps>`
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
-    ${(props) => `
-        min-height: calc(${props.screenHeight} / 3.5)px;
-        top: calc(${props.screenHeight} - ((${props.screenHeight} / 3.5) + ((${props.screenHeight} / 3.5) * 0.1)))px;
-        width: calc((${props.screenHeight} / 3.5) * 0.8)px;
-    `};
+    min-height: 300px;
+    top: 0;
+    width: 300px;
 `;
 
 export const DialogTitle = styled.div`

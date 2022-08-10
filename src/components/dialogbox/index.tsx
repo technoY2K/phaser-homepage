@@ -14,8 +14,6 @@ export default function DialogBox({
     messages,
     characterName,
     onDialogEnded,
-    screenWidth,
-    screenHeight,
 }: DialogBoxProps) {
     const [currentMessage, setCurrentMessage] = useState(0);
     const [messageEnded, setMessageEnded] = useState(false);
@@ -51,10 +49,7 @@ export default function DialogBox({
     }, [currentMessage, messageEnded, messages.length, onDialogEnded]);
 
     return (
-        <Styled.DialogContainer
-            screenWidth={screenWidth}
-            screenHeight={screenHeight}
-        >
+        <Styled.DialogContainer>
             <Styled.DialogTitle>{characterName}</Styled.DialogTitle>
             <Message
                 message={messages[currentMessage]}

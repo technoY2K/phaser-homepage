@@ -5,6 +5,7 @@ import { GameEvent, EventMessage, GamePayload } from "./game.types";
 import { useSelector } from "react-redux";
 import { AppState, useAppDispatch } from "~/store/store";
 import STRINGS from "./index.strings";
+import DialogBox from "~/components/dialogbox";
 
 export function GameEngine() {
     const [isReady, setReady] = useState(false);
@@ -42,7 +43,17 @@ export function GameEngine() {
 
     return (
         <main>
-            <div id="dialog-modal">Messages will go here</div>
+            <div id="dialog-modal">
+                <DialogBox
+                    messages={["Hello there", "Ok whatever", "Lorem Ipsum"]}
+                    characterName="Player"
+                    onDialogEnded={() => {
+                        console.log("end");
+                    }}
+                    screenWidth={800}
+                    screenHeight={800}
+                />
+            </div>
             <div
                 id={STRINGS.htmlElementMountId}
                 style={{ visibility: isReady ? "visible" : "hidden" }}
