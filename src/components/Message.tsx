@@ -15,7 +15,7 @@ const baseStyle: React.CSSProperties = {
 
 export default function Message({
     message = "",
-    trail = 35,
+    trail,
     onMessageEnded,
     forceShowFullMessage = false,
 }: MessageProps) {

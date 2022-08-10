@@ -11,22 +11,22 @@ export const DialogContainer = styled.div`
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
-    min-height: 300px;
+    min-height: 200px;
     top: 0;
     width: 300px;
 `;
 
 export const DialogTitle = styled.div`
     font-size: 16px;
-    margin-bottom: 12px;
     font-weight: bold;
+    margin-bottom: 12px;
 `;
 
 export const DialogFooter = styled.footer`
-    font-size: 16px;
+    bottom: 12px;
     cursor: pointer;
-    text-align: end;
+    font-size: 16px;
     position: absolute;
     right: 12px;
-    bottom: 12px;
+    text-align: end;
 `;

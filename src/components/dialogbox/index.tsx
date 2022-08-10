@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "../Message";
 import * as Styled from "./index.styled";
 
@@ -6,8 +6,6 @@ type DialogBoxProps = {
     messages: string[];
     characterName: string;
     onDialogEnded: VoidFunction;
-    screenWidth: number;
-    screenHeight: number;
 };
 
 export default function DialogBox({
@@ -19,9 +17,18 @@ export default function DialogBox({
     const [messageEnded, setMessageEnded] = useState(false);
     const [forceShowFullMessage, setForceShowFullMessage] = useState(false);
 
+    console.log(currentMessage, "CURRENT MESSAGE");
+    console.log(messageEnded, "MESSAGE ENDED");
+    console.log(forceShowFullMessage, "FORCE");
     useEffect(() => {
-        const handleKeyPressed = (e: KeyboardEvent) => {
-            if (["Enter", "Space", "Escape"].includes(e.code)) {
+        const handleKeyPressed = (e: KeyboardEvent | MouseEvent) => {
+            if (e instanceof KeyboardEvent) {
+                if (["Enter", "Space", "Escape"].includes(e.code)) {
+                    handleClick();
+                }
+            }
+
+            if (e instanceof MouseEvent) {
                 handleClick();
             }
         };
@@ -31,7 +38,7 @@ export default function DialogBox({
         return () => window.removeEventListener("keydown", handleKeyPressed);
     }, []);
 
-    const handleClick = useCallback(() => {
+    const handleClick = () => {
         if (messageEnded) {
             setMessageEnded(false);
             setForceShowFullMessage(false);
@@ -46,18 +53,18 @@ export default function DialogBox({
             setMessageEnded(true);
             setForceShowFullMessage(true);
         }
-    }, [currentMessage, messageEnded, messages.length, onDialogEnded]);
+    };
 
     return (
         <Styled.DialogContainer>
             <Styled.DialogTitle>{characterName}</Styled.DialogTitle>
             <Message
                 message={messages[currentMessage]}
-                trail={3}
+                trail={50}
                 onMessageEnded={() => setMessageEnded(true)}
                 forceShowFullMessage={forceShowFullMessage}
             />
-            <Styled.DialogFooter>
+            <Styled.DialogFooter onClick={handleClick}>
                 {currentMessage === messages.length - 1 && messageEnded
                     ? "Ok"
                     : "Next"}

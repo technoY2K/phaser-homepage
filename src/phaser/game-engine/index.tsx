@@ -45,13 +45,15 @@ export function GameEngine() {
         <main>
             <div id="dialog-modal">
                 <DialogBox
-                    messages={["Hello there", "Ok whatever", "Lorem Ipsum"]}
+                    messages={[
+                        "Hello there blah blah blah blah ablhadfa adfasdf adfadsf",
+                        "Ok whatever",
+                        "Lorem Ipsum",
+                    ]}
                     characterName="Player"
                     onDialogEnded={() => {
                         console.log("end");
                     }}
-                    screenWidth={800}
-                    screenHeight={800}
                 />
             </div>
             <div
