@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import Message from "../Message";
+import * as Styled from "./index.styled";
 
 type DialogBoxProps = {
     messages: string[];
@@ -47,4 +49,24 @@ export default function DialogBox({
             setForceShowFullMessage(true);
         }
     }, [currentMessage, messageEnded, messages.length, onDialogEnded]);
+
+    return (
+        <Styled.DialogContainer
+            screenWidth={screenWidth}
+            screenHeight={screenHeight}
+        >
+            <Styled.DialogTitle>{characterName}</Styled.DialogTitle>
+            <Message
+                message={messages[currentMessage]}
+                trail={3}
+                onMessageEnded={() => setMessageEnded(true)}
+                forceShowFullMessage={forceShowFullMessage}
+            />
+            <Styled.DialogFooter>
+                {currentMessage === messages.length - 1 && messageEnded
+                    ? "Ok"
+                    : "Next"}
+            </Styled.DialogFooter>
+        </Styled.DialogContainer>
+    );
 }

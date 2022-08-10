@@ -29,7 +29,7 @@ export const DialogTitle = styled.div`
     font-weight: bold;
 `;
 
-export const DialogFotter = styled.footer`
+export const DialogFooter = styled.footer`
     font-size: 16px;
     cursor: pointer;
     text-align: end;
