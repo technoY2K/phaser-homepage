@@ -19,7 +19,7 @@ export default function Message({
     onMessageEnded,
     forceShowFullMessage = false,
 }: MessageProps) {
-    const items = useMemo(
+    const lettersList = useMemo(
         () =>
             message
                 .trim()
@@ -27,18 +27,18 @@ export default function Message({
                 .map((letter, i) => {
                     return {
                         item: letter,
-                        key: i,
+                        index: i,
                     };
                 }),
         [message]
     );
 
-    const transitions = useTransition(items, {
+    const transitions = useTransition(lettersList, {
         trail,
         from: { display: "none" },
         enter: { display: "" },
-        onRest: (status, controller, item) => {
-            if (item.key === items.length - 1) {
+        onRest: (status, controller, letter) => {
+            if (letter.index === lettersList.length - 1) {
                 onMessageEnded();
             }
         },
@@ -48,8 +48,8 @@ export default function Message({
         <div style={baseStyle}>
             {forceShowFullMessage && <span>{message}</span>}
             {!forceShowFullMessage &&
-                transitions((styles, { item, key }) => (
-                    <animated.span key={key} style={styles}>
+                transitions((styles, { item, index }) => (
+                    <animated.span key={index} style={styles}>
                         {item}
                     </animated.span>
                 ))}
