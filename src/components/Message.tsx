@@ -1,23 +1,24 @@
 import { useMemo } from "react";
 import { animated, useTransition } from "react-spring";
+import styled from "styled-components";
 
-type MessageProps = {
-    message: string;
-    trail: number;
-    onMessageEnded: VoidFunction;
+const MessageContainer = styled.div`
+    font-size: "12px";
+    text-transform: uppercase;
+`;
+
+interface MessageProps {
     forceShowFullMessage: boolean;
-};
-
-const baseStyle: React.CSSProperties = {
-    fontSize: "12px",
-    textTransform: "uppercase",
-};
+    message: string;
+    onMessageEnded: VoidFunction;
+    trail: number;
+}
 
 export default function Message({
-    message = "",
-    trail,
-    onMessageEnded,
     forceShowFullMessage = false,
+    message = "",
+    onMessageEnded,
+    trail,
 }: MessageProps) {
     const lettersList = useMemo(
         () =>
@@ -37,7 +38,8 @@ export default function Message({
         trail,
         from: { display: "none" },
         enter: { display: "" },
-        onRest: (status, controller, letter) => {
+        onRest: (...args) => {
+            const [, , letter] = args;
             if (letter.index === lettersList.length - 1) {
                 onMessageEnded();
             }
@@ -45,7 +47,7 @@ export default function Message({
     });
 
     return (
-        <div style={baseStyle}>
+        <MessageContainer>
             {forceShowFullMessage && <span>{message}</span>}
             {!forceShowFullMessage &&
                 transitions((styles, { item, index }) => (
@@ -53,6 +55,6 @@ export default function Message({
                         {item}
                     </animated.span>
                 ))}
-        </div>
+        </MessageContainer>
     );
 }

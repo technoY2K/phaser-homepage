@@ -10,7 +10,7 @@ export enum EventMessage {
     StateChange = "state",
 }
 
-export type GamePayload<T = undefined> = {
+export interface GamePayload<T = undefined> {
     message: EventMessage;
     updateState?: () => PayloadAction<T>;
-};
+}

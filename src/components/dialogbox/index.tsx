@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import Message from "../Message";
 import * as Styled from "./index.styled";
 
-type DialogBoxProps = {
-    messages: string[];
+interface DialogBoxProps {
     characterName: string;
+    messages: string[];
     onDialogEnded: VoidFunction;
-};
+}
 
 export default function DialogBox({
-    messages,
     characterName,
+    messages,
     onDialogEnded,
 }: DialogBoxProps) {
     const [currentMessage, setCurrentMessage] = useState(0);
@@ -28,9 +28,7 @@ export default function DialogBox({
                 }
             }
 
-            if (e instanceof MouseEvent) {
-                handleClick();
-            }
+            handleClick();
         };
 
         window.addEventListener("keydown", handleKeyPressed);
@@ -59,10 +57,10 @@ export default function DialogBox({
         <Styled.DialogContainer>
             <Styled.DialogTitle>{characterName}</Styled.DialogTitle>
             <Message
-                message={messages[currentMessage]}
-                trail={50}
-                onMessageEnded={() => setMessageEnded(true)}
                 forceShowFullMessage={forceShowFullMessage}
+                message={messages[currentMessage]}
+                onMessageEnded={() => setMessageEnded(true)}
+                trail={50}
             />
             <Styled.DialogFooter onClick={handleClick}>
                 {currentMessage === messages.length - 1 && messageEnded

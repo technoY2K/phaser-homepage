@@ -1,4 +1,4 @@
-type ObjectPoint = {
+interface ObjectPoint {
     height: number;
     id: number;
     name: string;
@@ -9,7 +9,7 @@ type ObjectPoint = {
     width: number;
     x: number;
     y: number;
-};
+}
 
 export function gameObjectsToObjectPoints(
     gameObjects: unknown[]

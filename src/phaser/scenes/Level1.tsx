@@ -15,7 +15,6 @@ export class Level1 extends Scene {
     private tileset!: Tilemaps.Tileset;
 
     // layers
-    private groundLayer!: Tilemaps.TilemapLayer;
     private furnitureLayer!: Tilemaps.TilemapLayer;
     private wallsLayer!: Tilemaps.TilemapLayer;
     private exteriorLayer!: Tilemaps.TilemapLayer;
@@ -38,7 +37,7 @@ export class Level1 extends Scene {
         );
 
         // create layers
-        this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
+        this.map.createLayer("Ground", this.tileset, 0, 0);
 
         this.furnitureLayer = this.map.createLayer(
             "Furniture",
